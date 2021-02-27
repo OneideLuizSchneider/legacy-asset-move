@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: uE9rrECDsfu2Va48
+      MYSQL_DATABASE: production-db
+      MYSQL_USER: s3
+      MYSQL_PASSWORD: 7nW2Dpnb9psZ
+    ports:
+    - 3306:3306
+

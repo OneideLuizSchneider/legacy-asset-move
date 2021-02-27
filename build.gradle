@@ -21,7 +21,8 @@ repositories {
 }
 
 dependencies {
-    
+    compile 'io.github.cdimascio:java-dotenv:5.2.2'
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.2'
 
 }
 
