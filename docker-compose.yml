@@ -3,6 +3,8 @@ services:
   db:
     image: mariadb
     restart: always
+    volumes:
+    - ./data/mariadb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: uE9rrECDsfu2Va48
       MYSQL_DATABASE: production-db
@@ -10,4 +12,10 @@ services:
       MYSQL_PASSWORD: 7nW2Dpnb9psZ
     ports:
     - 3306:3306
-
+  s3:
+    image: scireum/s3-ninja:6.5.2
+    restart: always
+    volumes:
+    - ./data/s3ninja_data:/home/sirius/data
+    ports:
+      - 9444:9000
