@@ -1,4 +1,4 @@
-package com.legacy.asset.move;
+package com.legacy.asset.move.config;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -45,6 +45,5 @@ public class ConnectionS3 {
                         )
                 ).build();
     }
-
 
 }
