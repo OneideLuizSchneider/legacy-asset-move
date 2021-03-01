@@ -18,6 +18,16 @@ public class ConnectionS3 {
         this.createS3Connection();
     }
 
+    /**
+     * <p>
+     * This method will copy from the origin object to the destination
+     * </p>
+     *
+     * @param origin
+     *            The path/name of the origin object.
+     * @param destination
+     *            The path/name of the destination object.
+     */
     public void copyObject(String origin, String destination) {
         try {
             this.s3.copyObject(
@@ -27,8 +37,14 @@ public class ConnectionS3 {
         } catch (AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
         }
+
     }
 
+    /**
+     * <p>
+     * This method will create the connection with AWS S3
+     * </p>
+     */
     private void createS3Connection() {
         this.s3 = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(

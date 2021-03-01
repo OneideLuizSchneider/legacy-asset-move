@@ -29,6 +29,10 @@ dependencies {
 
     implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.964'
 
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
 }
 
 test {
