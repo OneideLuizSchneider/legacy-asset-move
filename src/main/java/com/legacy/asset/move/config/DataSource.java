@@ -16,8 +16,9 @@ public class DataSource {
 
     static {
         config.setJdbcUrl(dotenv.get("DB_URI"));
-        config.setDriverClassName("org.mariadb.jdbc.MariaDbDataSource");
         config.addDataSourceProperty("useServerPrepStmts", "true");
+        config.addDataSourceProperty("maximumPoolSize", Integer.parseInt(dotenv.get("DB_MAX_POOL_SIZE")));
+
         ds = new HikariDataSource(config);
     }
 

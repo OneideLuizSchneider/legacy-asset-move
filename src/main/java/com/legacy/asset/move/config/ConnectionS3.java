@@ -7,7 +7,9 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import io.github.cdimascio.dotenv.Dotenv;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ConnectionS3 {
 
     private static final Dotenv dotenv = Dotenv.load();
@@ -22,11 +24,6 @@ public class ConnectionS3 {
      * <p>
      * This method will copy from the origin object to the destination
      * </p>
-     *
-     * @param origin
-     *            The path/name of the origin object.
-     * @param destination
-     *            The path/name of the destination object.
      */
     public void copyObject(String origin, String destination) {
         try {
@@ -35,14 +32,16 @@ public class ConnectionS3 {
                     dotenv.get("AWS_S3_BUCKET_DESTINATION"), destination
             );
         } catch (AmazonServiceException e) {
-            System.err.println(e.getErrorMessage());
+            log.error("Error on method ConnectionS3.copyObject--------");
+            log.error(e.getMessage());
+            log.error("-----------------------------------------------");
         }
 
     }
 
     /**
      * <p>
-     * This method will create the connection with AWS S3
+     * This method will create a connection with AWS S3
      * </p>
      */
     private void createS3Connection() {
