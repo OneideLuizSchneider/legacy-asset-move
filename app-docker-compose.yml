@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app.Dockerfile
+    restart: always
+    environment:
+      DB_URI:
+      DB_MAX_POOL_SIZE: 10
+      AWS_S3_REGION:
+      AWS_S3_URL:
+      AWS_S3_ACCESS_KEY:
+      AWS_S3_SECRET_KEY:
+      AWS_S3_BUCKET_ORIGIN: legacy-s3
+      AWS_S3_BUCKET_DESTINATION: production-s3
+      OLD_PATH: image/
+      NEW_PATH: avatar/
+      # threads the app will start, at least 1
+      THREADS: 1
+      # how many rows will return from the db
+      SQL_LIMIT: 1
+      # if the total is above then 0 this number change in every application,
+      #and starts with 0
+      APP_NUMBER: 0
+      # total of bots/applications, and starts with 1
+      APP_TOTAL: 1
