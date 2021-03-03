@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @Slf4j
 public class DbUtil {
 
-    private static final Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     /**
      * <p>
@@ -45,7 +45,7 @@ public class DbUtil {
              PreparedStatement stmt = conn.prepareStatement(sqlCount)) {
             stmt.setString(1, dotenv.get("OLD_PATH") + "%");
             stmt.setInt(2, Integer.parseInt(dotenv.get("APP_TOTAL")));
-            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMER")));
+            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMBER")));
             ResultSet rs = stmt.executeQuery();
             rs.next();
             log.info("Total: " + rs.getInt("total"));
@@ -69,7 +69,7 @@ public class DbUtil {
              PreparedStatement stmt = conn.prepareStatement(sqlImages)) {
             stmt.setString(1, dotenv.get("OLD_PATH") + "%");
             stmt.setInt(2, Integer.parseInt(dotenv.get("APP_TOTAL")));
-            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMER")));
+            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMBER")));
             stmt.setInt(4, Integer.parseInt(dotenv.get("SQL_LIMIT")));
             return stmt.executeQuery();
         } catch (SQLException throwables) {

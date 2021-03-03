@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DataSource {
 
-    private static final Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     private static final HikariConfig config = new HikariConfig();
     private static final HikariDataSource ds;

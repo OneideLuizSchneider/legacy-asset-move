@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 public class Migration {
 
-    private static final Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     private ThreadPoolExecutor executor;
 
