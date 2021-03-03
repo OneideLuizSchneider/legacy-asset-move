@@ -6,12 +6,13 @@ services:
     volumes:
     - ./data/mariadb_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: uE9rrECDsfu2Va48
+      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: production-db
       MYSQL_USER: s3
-      MYSQL_PASSWORD: 7nW2Dpnb9psZ
+      MYSQL_PASSWORD: password
     ports:
     - 3306:3306
+
   s3:
     image: scireum/s3-ninja:6.5.2
     restart: always
