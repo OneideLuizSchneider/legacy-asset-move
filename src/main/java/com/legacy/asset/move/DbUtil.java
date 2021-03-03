@@ -40,11 +40,12 @@ public class DbUtil {
      * </p>
      */
     public static boolean exists() {
-        String sqlCount = "select count(id) as total from `production-db`.images where path not like 'avatar_%' and id % ? = ?";
+        String sqlCount = "select count(id) as total from `production-db`.images where path like ? and id % ? = ?";
         try (Connection conn = DataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sqlCount)) {
-            stmt.setInt(1, Integer.parseInt(dotenv.get("BOT_TOTAL")));
-            stmt.setInt(2, Integer.parseInt(dotenv.get("BOT_NUMER")));
+            stmt.setString(1, dotenv.get("OLD_PATH") + "%");
+            stmt.setInt(2, Integer.parseInt(dotenv.get("BOT_TOTAL")));
+            stmt.setInt(3, Integer.parseInt(dotenv.get("BOT_NUMER")));
             ResultSet rs = stmt.executeQuery();
             rs.next();
             log.info("Total: " + rs.getInt("total"));
@@ -57,6 +58,11 @@ public class DbUtil {
         return false;
     }
 
+    /**
+     * <p>
+     * This method will return rows to migrate, based on params
+     * </p>
+     */
     public static ResultSet getImages() {
         String sqlImages = "select id, path from `production-db`.images where path like ? and id % ? = ? limit ?";
         try (Connection conn = DataSource.getConnection();
