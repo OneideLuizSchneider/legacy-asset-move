@@ -25,18 +25,19 @@ public class ConnectionS3 {
      * This method will copy from the origin object to the destination
      * </p>
      */
-    public void copyObject(String origin, String destination) {
+    public boolean copyObject(String origin, String destination) {
         try {
             this.s3.copyObject(
                     dotenv.get("AWS_S3_BUCKET_ORIGIN"), origin,
                     dotenv.get("AWS_S3_BUCKET_DESTINATION"), destination
             );
+            return true;
         } catch (AmazonServiceException e) {
             log.error("Error on method ConnectionS3.copyObject--------");
             log.error(e.getMessage());
             log.error("-----------------------------------------------");
         }
-
+        return false;
     }
 
     /**
