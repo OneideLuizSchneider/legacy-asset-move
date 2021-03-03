@@ -44,8 +44,8 @@ public class DbUtil {
         try (Connection conn = DataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sqlCount)) {
             stmt.setString(1, dotenv.get("OLD_PATH") + "%");
-            stmt.setInt(2, Integer.parseInt(dotenv.get("BOT_TOTAL")));
-            stmt.setInt(3, Integer.parseInt(dotenv.get("BOT_NUMER")));
+            stmt.setInt(2, Integer.parseInt(dotenv.get("APP_TOTAL")));
+            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMER")));
             ResultSet rs = stmt.executeQuery();
             rs.next();
             log.info("Total: " + rs.getInt("total"));
@@ -68,8 +68,8 @@ public class DbUtil {
         try (Connection conn = DataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sqlImages)) {
             stmt.setString(1, dotenv.get("OLD_PATH") + "%");
-            stmt.setInt(2, Integer.parseInt(dotenv.get("BOT_TOTAL")));
-            stmt.setInt(3, Integer.parseInt(dotenv.get("BOT_NUMER")));
+            stmt.setInt(2, Integer.parseInt(dotenv.get("APP_TOTAL")));
+            stmt.setInt(3, Integer.parseInt(dotenv.get("APP_NUMER")));
             stmt.setInt(4, Integer.parseInt(dotenv.get("SQL_LIMIT")));
             return stmt.executeQuery();
         } catch (SQLException throwables) {
