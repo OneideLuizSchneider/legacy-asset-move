@@ -16,7 +16,7 @@ Below are the steps to run this application.
 ### Step 2 - Get the database information
 - The user just need permission to select and update, and access on the table 'images'
 
-### Step 3 - Change the environment variables on docker-compose.
+### Step 3 - Change the environment variables on docker-compose and/or create a .env on the root folder if you want to run on the terminal without Docker.
 #### Environment Variables
 
 |  Var                       |  Description                                    |  Example                 |
